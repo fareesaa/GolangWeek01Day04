@@ -11,18 +11,18 @@ type Mahasiswa struct {
 	NilaiFisika  int
 	NilaiKimia   int
 	NilaiBiologi int
+	Status       string
 }
 
 func main() {
 	var mahasiswa []Mahasiswa
-	var mahasiswaLulus []Mahasiswa
 	for {
 		var pil int
 
 		fmt.Println("Menu")
-		fmt.Println("1.Input Data Staff")
-		fmt.Println("2.Hitung Gaji Total")
-		fmt.Println("3.Tampil Data Staff")
+		fmt.Println("1.Masukkan Data Mahasiswa")
+		fmt.Println("2.Tampil Data Mahasiswa")
+		fmt.Println("3.Seleksi Mahasiswa")
 		fmt.Println("4.EXIT")
 
 		fmt.Println("====================")
@@ -45,23 +45,16 @@ func main() {
 			}
 		case 3:
 			seleksiMhs(&mahasiswa)
-			for _, el := range mahasiswaLulus {
-				fmt.Println(stringify(el))
-			}
 		}
 	}
 }
 func seleksiMhs(mahasiswa *[]Mahasiswa) {
-	for _, el := range *mahasiswa {
-		fmt.Printf("hitung total gaji %s \n", el.Nama)
-		if (el.NilaiBiologi + el.NilaiFisika + el.NilaiKimia/3) > 70 {
-			mahasiswaNew := Mahasiswa{}
-			mahasiswaNew.Idmhs = el.Idmhs
-			mahasiswaNew.Nama = el.Nama
-			mahasiswaNew.NilaiBiologi = el.NilaiBiologi
-			mahasiswaNew.NilaiFisika = el.NilaiFisika
-			mahasiswaNew.NilaiKimia = el.NilaiKimia
-			*mahasiswa = append(*mahasiswa, mahasiswaNew)
+	for i, el := range *mahasiswa {
+		if (el.NilaiBiologi+el.NilaiFisika+el.NilaiKimia)/3 > 70 {
+			(*mahasiswa)[i].Status = "Lulus"
+			fmt.Println(stringify((*mahasiswa)[i]))
+		} else {
+			(*mahasiswa)[i].Status = "Tidak Lulus"
 		}
 	}
 }
@@ -81,10 +74,10 @@ func inputMhs(mahasiswa *[]Mahasiswa) {
 	fmt.Print("Masukkan Nilai Fisika: ")
 	fmt.Scan(&nilaiFisika)
 
-	fmt.Print("Masukkan Nilai kimia: ")
+	fmt.Print("Masukkan Nilai Kimia: ")
 	fmt.Scan(&nilaiKimia)
 
-	fmt.Print("Masukkan Nilai Biologi: ")
+	fmt.Print("Enter your Biologi: ")
 	fmt.Scan(&nilaiBiologi)
 
 	mahasiswaNew := Mahasiswa{}
