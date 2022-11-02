@@ -5,11 +5,12 @@ import (
 )
 
 type Staff struct {
-	idStaff    int    `json:"id"`
-	namaStaff  string `json:"nama"`
-	gapokStaff int    `json:"gapok"`
-	tunjStaff  int    `json:"tunjangan"`
-	totalStaff int    `json:"totalgaji"`
+	idStaff      int    `json:"id"`
+	namaStaff    string `json:"nama"`
+	jabatanStaff string `json:"jabatan"`
+	gapokStaff   int    `json:"gapok"`
+	tunjStaff    int    `json:"tunjangan"`
+	totalStaff   int    `json:"totalgaji"`
 }
 
 func main() {
@@ -18,6 +19,7 @@ func main() {
 
 	var id int
 	var nama string
+	var jabatan string
 	var gapok int
 	var tunjangan int
 	var totgaji int
@@ -52,6 +54,9 @@ func main() {
 			fmt.Print("Enter your name: ")
 			fmt.Scan(&nama)
 
+			fmt.Print("Enter your position: ")
+			fmt.Scan(&jabatan)
+
 			fmt.Print("Enter your salary: ")
 			fmt.Scan(&gapok)
 
@@ -60,15 +65,15 @@ func main() {
 
 			staff.idStaff = id
 			staff.namaStaff = nama
+			staff.jabatanStaff = jabatan
 			staff.gapokStaff = gapok
 			staff.tunjStaff = tunjangan
 
 			fmt.Printf("Id Staff : %d\n", staff.idStaff)
 			fmt.Printf("Nama Staff : %s\n", staff.namaStaff)
+			fmt.Printf("Jabatan Staff : %s\n", staff.jabatanStaff)
 			fmt.Printf("Gaji Pokok Staff : %d\n", staff.gapokStaff)
 			fmt.Printf("Tunjangan Staff : %d\n", staff.tunjStaff)
-
-			fmt.Scanf("%d\n", &pil)
 
 			break
 		case 2:
@@ -81,6 +86,7 @@ func main() {
 			fmt.Println("===========Data Staff===========")
 			fmt.Printf("Id Staff : %d\n", staff.idStaff)
 			fmt.Printf("Nama Staff : %s\n", staff.namaStaff)
+			fmt.Printf("Jabatan Staff : %s\n", staff.jabatanStaff)
 			fmt.Printf("Gaji Pokok Staff : %d\n", staff.gapokStaff)
 			fmt.Printf("Tunjangan Staff : %d\n", staff.tunjStaff)
 			fmt.Printf("Total Gaji Staff : %d\n", staff.totalStaff)
